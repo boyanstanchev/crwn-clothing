@@ -6,4 +6,10 @@
   .title {
     margin: 10px 0;
   }
+
+  .form-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
 }

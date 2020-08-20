@@ -1,4 +1,4 @@
-import React, { FormEvent } from 'react';
+import React, { FormEvent, ChangeEvent } from 'react';
 
 import './sign-in.styles.scss';
 import FormInput from '../form-input/form-input.component';
@@ -27,7 +27,7 @@ class SignIn extends React.Component<
     this.setState({ email: '', password: '' });
   };
 
-  handleChange = (e: FormEvent<HTMLInputElement>) => {
+  handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target as HTMLInputElement;
 
     this.setState({ [name]: value } as any);
@@ -58,12 +58,18 @@ class SignIn extends React.Component<
             required
           />
 
-          <CustomButton type="submit" value="Submit Form">
-            Sign In
-          </CustomButton>
-          <CustomButton onClick={signInWithGoogle} value="Submit Form">
-            Sign In With Google
-          </CustomButton>
+          <div className="form-buttons">
+            <CustomButton type="submit" value="Submit Form">
+              Sign In
+            </CustomButton>
+            <CustomButton
+              onClick={signInWithGoogle}
+              style={{ backgroundColor: 'rgb(64, 120, 235)' }}
+              value="Submit Form"
+            >
+              Sign In With Google
+            </CustomButton>
+          </div>
         </form>
       </div>
     );

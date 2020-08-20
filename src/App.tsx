@@ -6,9 +6,19 @@ import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import Header from './components/header/header.components';
 import SignInUp from './pages/sign-in-up/sign-in-up.components';
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
-class App extends React.Component<{}, { currentUser: firebase.User | null }> {
+class App extends React.Component<
+  {},
+  {
+    currentUser: {
+      id: string;
+      displayName: string;
+      email: string;
+      dateCreated: Date;
+    } | null;
+  }
+> {
   constructor(props: any) {
     super(props);
 
@@ -20,8 +30,25 @@ class App extends React.Component<{}, { currentUser: firebase.User | null }> {
   authStateSub$: any = null;
 
   componentDidMount() {
-    this.authStateSub$ = auth.onAuthStateChanged((user) => {
-      this.setState({ currentUser: user });
+    this.authStateSub$ = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth, {});
+
+        userRef?.onSnapshot((snapShot) => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...(snapShot.data() as {
+                displayName: string;
+                email: string;
+                dateCreated: Date;
+              }),
+            },
+          });
+        });
+      } else {
+        this.setState({ currentUser: null })
+      }
     });
   }
 
