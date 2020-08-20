@@ -7,12 +7,12 @@ const CustomButton = ({
   ...otherProps
 }: {
   children: any;
-  type?: "button" | "submit" | "reset" | undefined;
+  type?: 'button' | 'submit' | 'reset' | undefined;
   value?: string;
   onClick?: any;
-  style?: any
+  style?: any;
 }) => (
-  <button className="custom-button" {...otherProps}>
+  <button className='custom-button' {...otherProps}>
     {children}
   </button>
 );

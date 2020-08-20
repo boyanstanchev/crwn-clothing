@@ -13,9 +13,9 @@ const ColletionPreview = ({
   title: string;
   items: ICollectionItem[];
 }) => (
-  <div className="collection-preview">
-    <h1 className="title">{title.toUpperCase()}</h1>
-    <div className="preview">
+  <div className='collection-preview'>
+    <h1 className='title'>{title.toUpperCase()}</h1>
+    <div className='preview'>
       {items
         .filter((_, index) => index < 4)
         .map(({ id, ...otherProps }) => (

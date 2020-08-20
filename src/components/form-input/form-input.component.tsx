@@ -14,18 +14,14 @@ const FormInput = ({
   type?: string;
   value?: string;
 }) => (
-  <div className="group">
-    <input
-      {...otherProps}
-      onChange={handleChange}
-      className="form-input"
-    />
+  <div className='group'>
+    <input {...otherProps} onChange={handleChange} className='form-input' />
     {label ? (
       <label
         className={`${
           otherProps.value?.length ? 'shrink' : ''
         } form-input-label`}
-        htmlFor=""
+        htmlFor=''
       >
         {label}
       </label>

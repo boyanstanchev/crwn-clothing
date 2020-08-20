@@ -32,7 +32,7 @@ class ShopPage extends React.Component<{}, { collections: ICollection[] }> {
     const { collections } = this.state;
 
     return (
-      <div className="shop-page">
+      <div className='shop-page'>
         {collections.map(({ id, ...otherProps }) => (
           <CollectionPreview key={id} {...otherProps} />
         ))}
